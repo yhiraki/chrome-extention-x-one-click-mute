@@ -1,0 +1,31 @@
+.x-one-click-mute-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-left: 0px;
+    border: none;
+    background-color: transparent;
+    color: rgb(113, 118, 123);
+    /* Explicit X gray color */
+    position: relative;
+    top: -2px;
+    /* Slight alignment fix */
+}
+
+.x-one-click-mute-btn:hover {
+    background-color: rgba(249, 24, 128, 0.1);
+    /* Using Pink/Red for Mute/Block actions usually, or just blue */
+    color: rgb(249, 24, 128);
+    /* Warning color for mute */
+}
+
+.x-one-click-mute-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
