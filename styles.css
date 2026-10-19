@@ -1,31 +1,117 @@
-.x-one-click-mute-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 9999px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    margin-left: 0px;
-    border: none;
-    background-color: transparent;
-    color: rgb(113, 118, 123);
-    /* Explicit X gray color */
-    position: relative;
-    top: -2px;
-    /* Slight alignment fix */
+/* =============================================================================
+ * X One-Click Mute / Not Interested — styles.css
+ * ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+ * ボタンを入れるコンテナ（アクションバーの末尾に付く）
+ * ------------------------------------------------------------------------ */
+.xoc-actions {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  margin-left: 4px;
+  /* X のアクションバーのアイコン色を継承（JS が --xoc-base を設定する） */
+  --xoc-base: rgb(113, 118, 123);
 }
 
-.x-one-click-mute-btn:hover {
-    background-color: rgba(249, 24, 128, 0.1);
-    /* Using Pink/Red for Mute/Block actions usually, or just blue */
-    color: rgb(249, 24, 128);
-    /* Warning color for mute */
+/* ---------------------------------------------------------------------------
+ * ボタン本体
+ * ------------------------------------------------------------------------ */
+.xoc-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  cursor: pointer;
+  color: var(--xoc-base);
+  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.x-one-click-mute-btn svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
+.xoc-btn svg {
+  display: block;
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+.xoc-btn:focus-visible {
+  outline: 2px solid rgb(29, 155, 240);
+  outline-offset: 1px;
+}
+
+/* ミュート（X の警告色ピンク） */
+.xoc-btn-mute:hover {
+  background-color: rgba(249, 24, 128, 0.1);
+  color: rgb(249, 24, 128);
+}
+
+/* 興味がない（X の青） */
+.xoc-btn-not-interested:hover {
+  background-color: rgba(29, 155, 240, 0.1);
+  color: rgb(29, 155, 240);
+}
+
+/* ---------------------------------------------------------------------------
+ * 状態
+ * ------------------------------------------------------------------------ */
+.xoc-btn.xoc-busy {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: default;
+}
+
+.xoc-btn.xoc-busy::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(128, 128, 128, 0.35);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: xoc-spin 0.7s linear infinite;
+}
+
+.xoc-btn.xoc-done {
+  color: rgb(0, 186, 124);
+  background-color: rgba(0, 186, 124, 0.1);
+}
+
+@keyframes xoc-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------------------------------------------------------------------------
+ * トースト
+ * ------------------------------------------------------------------------ */
+#xoc-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 72px;
+  transform: translate(-50%, 12px);
+  z-index: 2147483647;
+  max-width: 70vw;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: rgba(22, 22, 22, 0.96);
+  color: #fff;
+  font: 13px/1.5 'Hiragino Kaku Gothic ProN', 'Meiryo', system-ui, -apple-system, sans-serif;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#xoc-toast.xoc-show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+#xoc-toast.xoc-err {
+  background: rgba(190, 32, 32, 0.96);
 }
