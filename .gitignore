@@ -1,0 +1,26 @@
+# Windows
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# macOS
+.DS_Store
+
+# エディタ / IDE
+.vscode/
+.idea/
+*.swp
+
+# ログ・一時ファイル
+*.log
+tools/_test-*
+
+# Node（scripts/ のテスト用）
+node_modules
+dist
+.env
+
+# AI エージェント・ブラウザ確認の作業ファイル
+.claude/worktrees
+.claude/settings.local.json
+.playwright-mcp/

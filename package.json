@@ -1,0 +1,17 @@
+{
+  "name": "chrome-extention-x-one-click-mute",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "X（Twitter）のポストに「ミュート」「このポストに興味がない」のワンクリックボタンを追加する Chrome 拡張機能（Manifest V3）",
+  "scripts": {
+    "release-notes:patch": "node scripts/release-notes.mjs patch",
+    "release-notes:minor": "node scripts/release-notes.mjs minor",
+    "release-notes:major": "node scripts/release-notes.mjs major",
+    "version:patch": "node scripts/version.mjs patch",
+    "version:minor": "node scripts/version.mjs minor",
+    "version:major": "node scripts/version.mjs major",
+    "version:tag": "node scripts/version.mjs tag",
+    "test:scripts": "node --test scripts/lib"
+  }
+}
